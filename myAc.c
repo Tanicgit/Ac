@@ -208,4 +208,35 @@ void FreeStringList(_stringList *list)
 	free(list->d[i]);
 	free(list);
 }
-//56789trtru
+#define	FIFO_SIZE	10240
+static uint8_t PAfifo[FIFO_SIZE];
+static uint16_t tail=0;
+static uint16_t head=FIFO_SIZE-1;
+int8_t in(uint8_t a)
+{
+	uint16_t p;
+	p=tail;
+	if(p==head)return -1;
+	else
+	{
+		PAfifo[p] = a;
+		tail = p<FIFO_SIZE-1 ? p+1 : 0;
+		return 0;
+	}
+}
+uint8_t Fifoout(uint8_t *a)
+{
+	uint16_t p;
+	p= head;
+	p= p<FIFO_SIZE-1 ? p+1:0;
+	if(p==tail)
+	{
+		return 1
+	}
+	else
+	{
+		*a = PAfifo[p];
+		head = p;
+		return 0
+	}
+}
