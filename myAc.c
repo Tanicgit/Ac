@@ -231,12 +231,12 @@ uint8_t Fifoout(uint8_t *a)
 	p= p<FIFO_SIZE-1 ? p+1:0;
 	if(p==tail)
 	{
-		return 1
+		return 1;
 	}
 	else
 	{
 		*a = PAfifo[p];
 		head = p;
-		return 0
+		return 0;
 	}
 }
